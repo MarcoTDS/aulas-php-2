@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "id": "a6f1e61a-7e96-d81f-a6a0-1a93938de3fe",
+        "titulo": "dd",
+        "genero": "D",
+        "paginas": "55",
+        "autor": "55"
+    },
+    {
+        "id": "e51055aa-39af-b58c-fb9d-1c8a0f02502f",
+        "titulo": "jjj",
+        "genero": "D",
+        "paginas": "55",
+        "autor": ""
+    },
+    {
+        "id": "a7188046-7a42-7f1e-21b9-aa7c6e1fc037",
+        "titulo": "hh",
+        "genero": "D",
+        "paginas": "555",
+        "autor": "  bbbb"
+    }
+]
