@@ -49,6 +49,10 @@ if(isset($_POST['nome'])){
     }
 
 }
+
+if (isset($_GET['excluir_id'])) {
+    excluir($_GET['excluir_id'],$pessoas);
+}
     
 ?>
 
@@ -85,5 +89,45 @@ if(isset($_POST['nome'])){
         <button type="submit">Cadastrar</button>
 
     </form>
+    <div style="color: red;">
+        <h2><?php echo $erros ?></h2>
+    </div>
+
+    <h3>Lista de Pessoas Cadastradas</h3>
+
+    <table border='1'>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Gênero</th>
+            <th>Idade</th>
+            <th>CPF</th>
+            <th>Cidade Natal</th>
+        </tr>
+        <?php foreach($pessoas as $p) : ?>
+            <tr>
+                <td><?php echo $p['id']; ?></td>
+                <td><?php echo $p['nome']; ?></td>
+                <?php
+                    switch($p['genero']){
+                        case 'M':
+                            echo "<td>Masculino</td>";
+                            break;
+                        case 'F':
+                            echo "<td>Feminino</td>";
+                            break;
+                        case 'NI':
+                            echo "<td>Não informado</td>";
+                            break;
+                    }
+                ?>
+                <td><?php echo $p['idade']; ?></td>
+                <td><?php echo $p['cpf'];?></td>
+                <td>
+                <a href="pessoas.php?excluir_id=<?php echo $p['id'] ?>" onclick="return confirm('Confirma a exclusão da pessoa?');">Excluir</a> 
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </body>
 </html>
