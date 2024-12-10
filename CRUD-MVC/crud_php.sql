@@ -1,3 +1,4 @@
+-- Active: 1733178056327@@localhost@3306@crud_php
 /* TABELA cursos */
 CREATE TABLE cursos ( 
   id int AUTO_INCREMENT NOT NULL, 

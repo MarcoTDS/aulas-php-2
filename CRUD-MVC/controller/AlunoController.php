@@ -16,4 +16,13 @@ class AlunoController{
         return $alunos;
     }
 
+    public function salvar(Aluno $aluno){
+
+        $this->alunoDao->save($aluno);
+
+        header("location: listar.php");
+        exit;
+        
+    }
+
 }

@@ -1,26 +1,29 @@
 <?php 
 
-class Curso{
-    private int $id;
-    private string $nome;
-    private string $turno;
+class Curso {
 
-    
+    private ?int $id;
+    private ?string $nome;
+    private ?string $turno;
+
+    public function __toString(){
+
+        return $this->nome . "(". $this->turno .")";
+        
+    }
 
     /**
      * Get the value of id
-     */ 
-    public function getId()
+     */
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
      * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
+     */
+    public function setId(?int $id): self
     {
         $this->id = $id;
 
@@ -29,18 +32,16 @@ class Curso{
 
     /**
      * Get the value of nome
-     */ 
-    public function getNome()
+     */
+    public function getNome(): ?string
     {
         return $this->nome;
     }
 
     /**
      * Set the value of nome
-     *
-     * @return  self
-     */ 
-    public function setNome($nome)
+     */
+    public function setNome(?string $nome): self
     {
         $this->nome = $nome;
 
@@ -49,18 +50,16 @@ class Curso{
 
     /**
      * Get the value of turno
-     */ 
-    public function getTurno()
+     */
+    public function getTurno(): ?string
     {
         return $this->turno;
     }
 
     /**
      * Set the value of turno
-     *
-     * @return  self
-     */ 
-    public function setTurno($turno)
+     */
+    public function setTurno(?string $turno): self
     {
         $this->turno = $turno;
 
