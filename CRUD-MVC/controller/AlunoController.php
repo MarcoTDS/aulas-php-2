@@ -25,4 +25,10 @@ class AlunoController{
         
     }
 
+    public function excluir(Aluno $aluno){
+        $this->alunoDao->delete($aluno);
+
+        header("location: listar.php");
+    }
+
 }

@@ -51,4 +51,11 @@ class AlunoDAO{
 
     }
 
+    public function delete(Aluno $aluno){
+        $conn = Connection::getConnection();
+        $sql = "DELETE FROM alunos WHERE id = ?";
+        $stm = $conn->prepare($sql);
+        $stm->execute(array($aluno->getId()));
+    }
+
 }
