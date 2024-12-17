@@ -3,6 +3,10 @@
 include_once(__DIR__ . "/../../model/Aluno.php");
 include_once(__DIR__ . "/../../model/Curso.php");
 include_once(__DIR__ . "/../../controller/AlunoController.php");
+include_once(__DIR__ . "/../../service/AlunoService.php");
+
+$msgErros = "";
+$aluno = null;
 
 
 if(isset($_POST['nome'])){
@@ -24,8 +28,17 @@ if(isset($_POST['nome'])){
     else{
         $aluno->setCurso(null);
     }
+
     $alunoCont = new AlunoController();
-    $alunoCont->salvar($aluno);
+    $erros = $alunoCont->salvar($aluno);
+
+    if(empty($erros)){
+        header("location: listar.php");
+        exit;
+    }
+    else{
+        $msgErros = implode("<br>",$erros);
+    }
 
 }
     

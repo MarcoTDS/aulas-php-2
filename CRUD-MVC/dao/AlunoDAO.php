@@ -58,4 +58,37 @@ class AlunoDAO{
         $stm->execute(array($aluno->getId()));
     }
 
+    public function update(Aluno $aluno){
+        $conn = Connection::getConnection();
+
+        $sql = "UPDATE alunos SET nome = ?, idade = ?, estrangeiro = ?, id_curso = ? WHERE id = ?";
+        $stm = $conn->prepare($sql);
+        $stm->execute(array($aluno->getNome(), $aluno->getIdade(),
+                            $aluno->getEstrangeiro(), 
+                            $aluno->getCurso()->getId(),
+                            $aluno->getId()));
+    
+    }
+
+    public function findById(int $id){
+
+        $conn = Connection::getConnection();
+
+        $sql = "SELECT a.*, c.nome nome_curso, c.turno turno_curso FROM alunos a JOIN cursos c ON (c.id = a.id_curso) WHERE a.id = ?";
+
+        $stm = $conn->prepare($sql);
+        $stm->execute(array($id));
+
+        $result = $stm->fetchAll();
+
+        $alunos = $this->mapAlunos($result);
+
+        if(count($alunos) > 0)
+            return $alunos[0];
+        
+        //Retorna nulo caso nenhum aluno tenha sido encontrado
+        return null;
+
+    }
+
 }

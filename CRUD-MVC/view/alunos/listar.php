@@ -22,6 +22,7 @@ include_once(__DIR__ . "/../include/header.php");
             <th>Estrangeiro</th>
             <th>Curso</th>
             <th>Excluir</th>
+            <th>Editar</th>
         </tr>
         <?php foreach($alunos as $a) :?>
 
@@ -30,7 +31,8 @@ include_once(__DIR__ . "/../include/header.php");
                 <td><?= $a->getIdade(); ?></td>
                 <td><?= $a->getEstrangeiroTexto() ?></td>
                 <td><?= $a->getCurso(); ?></td>
-                <td><a href="excluir.php?id=<?= $a->getId()?>"><img src="../../img/btn_excluir.png"></a></td>
+                <td><a href="excluir.php?id=<?= $a->getId()?>" onclick="return confirm('Confirma a exclusão do aluno?');"><img src="../../img/btn_excluir.png"></a></td>
+                <td><a href="alterar.php?id=<?= $a->getId()?>"><img src="../../img/btn_editar.png"></a></td>
             </tr>
 
         <?php endforeach; ?>

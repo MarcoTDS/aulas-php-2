@@ -16,20 +16,20 @@ $cursos = $cursoCont->listar();
     <div>
         <label for="txtNome">Nome:</label>
         <input type="text" id="txtNome" name="nome" 
-            size="45" maxlength="70" />
+            size="45" maxlength="70" value="<?= ($aluno ? $aluno->getNome() : '') ?>"/>
     </div>
 
     <div>
         <label for="txtIdade">Idade:</label>
-        <input type="number" id="txtIdade" name="idade" />
+        <input type="number" id="txtIdade" name="idade" value="<?= ($aluno ? $aluno->getIdade() : '') ?>"/>
     </div>
 
     <div >
         <label for="selEst">Estrangeiro:</label>
         <select id="selEst" name="estrangeiro">
             <option value="">---Selecione---</option>
-            <option value="S">Sim</option>
-            <option value="N">Não</option>
+            <option <?= ($aluno && $aluno->getEstrangeiro() == 'S' ? 'selected'  : '') ?> value="S">Sim</option>
+            <option <?= ($aluno && $aluno->getEstrangeiro() == 'N' ? 'selected'  : '') ?> value="N">Não</option>
         </select>
     </div>
 
@@ -39,17 +39,22 @@ $cursos = $cursoCont->listar();
             <option value="">---Selecione---</option>
             <?php foreach($cursos as $c) :?>
 
-            <option value="<?= $c->getId()?>"><?= $c?></option>
+            <option <?= ($aluno && $aluno->getCurso() && $aluno->getCurso()->getId() == $c->getId() ? 'selected'  : '') ?> value="<?= $c->getId()?>"><?= $c?></option>
 
             <?php endforeach;?>
        </select>        
     </div>
 
+    <input type="hidden" name="id" value=<?= ($aluno ? $aluno->getid() : '') ?>>
+
     <button type="submit">Gravar</button>
 </form>
 
+<?php if($msgErros):?>
 <div id="msgErro" style="color: red;">
+    <?= $msgErros ?>
 </div>
+<?php endif;?>
 
 <div>
     <a href="listar.php">Voltar</a>
